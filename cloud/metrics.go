@@ -47,11 +47,11 @@ func BackgroundMetric(kind, name, value string) {
 		return
 	}
 	common.Debug("BackgroundMetric kind:%v name:%v value:%v send:%v", kind, name, value, xviper.CanTrack())
-	if xviper.CanTrack() {
-		telemetryBarrier.Add(1)
-		go sendMetric(metricsHost, kind, name, value)
-		runtime.Gosched()
-	}
+	// if xviper.CanTrack() {
+	// 	telemetryBarrier.Add(1)
+	// 	go sendMetric(metricsHost, kind, name, value)
+	// 	runtime.Gosched()
+	// }
 }
 
 func WaitTelemetry() {
