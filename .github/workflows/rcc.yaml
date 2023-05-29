@@ -24,6 +24,11 @@ jobs:
               run: rake what
             - name: Building
               run: rake clean build
+            - uses: actions/upload-artifact@v1
+              if: success() || failure()
+              with:
+                  name: ${{ matrix.os }}-builds
+                  path: ./build
 
     robot:
         name: Robot
