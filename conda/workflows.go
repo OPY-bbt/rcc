@@ -190,7 +190,7 @@ func newLiveInternal(yaml, condaYaml, requirementsText, key string, force, fresh
 		}
 		common.Progress(7, "Running pip install phase. (pip v%s)", PipVersion(python))
 		common.Debug("Updating new environment at %v with pip requirements from %v (size: %v)", targetFolder, requirementsText, size)
-		pipCommand := common.NewCommander(python, "-m", "pip", "install", "--isolated", "--no-color", "--disable-pip-version-check", "--prefer-binary", "--cache-dir", pipCache, "--find-links", wheelCache, "--requirement", requirementsText)
+		pipCommand := common.NewCommander(python, "-m", "pip", "install", "-i", "https://pypi.tuna.tsinghua.edu.cn/simple", "--isolated", "--no-color", "--disable-pip-version-check", "--prefer-binary", "--cache-dir", pipCache, "--find-links", wheelCache, "--requirement", requirementsText)
 		pipCommand.Option("--index-url", settings.Global.PypiURL())
 		pipCommand.Option("--trusted-host", settings.Global.PypiTrustedHost())
 		pipCommand.ConditionalFlag(common.VerboseEnvironmentBuilding(), "--verbose")
